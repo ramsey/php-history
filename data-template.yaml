@@ -17,18 +17,15 @@
 # trailing short "slug" of the event title to help prevent file name conflicts.
 # Use only alphanumeric characters and dashes, and be sure the time is in UTC
 # (see notes on event dates below). Place the file in a subdirectory named for
-# the year the event occurred.
+# the year the event occurred and, if applicable, the month.
 #
-#   data/YYYY/YYYY-MM-DD-HH-MM-SS-event-name-slug.yaml
+#   data/events/YYYY/MM/YYYY-MM-DD-HH-MM-SS-event-name-slug.yaml
 #
 # For example:
 #
-#   data/2025/2025-01-24-00-00-phpxmsp.yaml
-#   data/2025/2025-05-20-phptek.yaml
-#
-# Note: the above example uses "00-00" for the hour and minute when the PHPxMSP
-# user group meeting started. This is because 6pm America/Chicago time on
-# January 23, 2025, is 00:00 UTC on January 24, 2025.
+#   data/events/2025/01/2025-01-24-00-00-phpxmsp.yaml
+#   data/events/2025/05/2025-05-20-phptek.yaml
+#   data/events/2025/2025-a-php-book.yaml
 
 # Event title (required)
 title: A short description or name of the event

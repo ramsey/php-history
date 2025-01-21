@@ -33,13 +33,14 @@ security issue in software that is maintained in this repository, please read
 
 ## Copyright and License
 
-### Data in the `data/` directory
+### Data in the `data/events/` directory
 
-All data files within the `data/` directory, unless indicated otherwise, are
-marked with CC0 1.0 Universal and dedicated to the public domain. To the extent
-possible under law, the contributors have waived all copyright and related or
-neighboring rights to the data contributed to the `data/` directory. Please see
-[COPYING.data](COPYING.data) and [NOTICE](NOTICE) for more information.
+All data files within the `data/events/` directory, unless indicated otherwise,
+are marked with CC0 1.0 Universal and dedicated to the public domain. To the
+extent possible under law, the contributors have waived all copyright and
+related or neighboring rights to the data contributed to the `data/events/`
+directory. Please see [COPYING.data](COPYING.data) and [NOTICE](NOTICE) for more
+information.
 
 ### Source Code
 

@@ -73,22 +73,22 @@ project.
 When you do begin working on your feature, here are some guidelines to consider:
 
 * Your pull request description should clearly detail the changes you have made.
-* If adding new data to the `data/` directory, please use `data-template.yaml`
+* If adding new data to the `data/events/` directory, please use `event-template.yaml`
   and follow the directions in it.
 * **Use topic/feature branches.** Please do not ask to pull from your main branch.
   * For more information, see "[Understanding the GitHub flow][gh-flow]."
 * **Submit one feature or data per pull request.** If you have multiple features
   or data you wish to submit, please break them into separate pull requests.
 
-## Copyright and Public Domain Dedication
+## Copyright, Licensing, and Public Domain Dedication
 
-By contributing any work to the `data/` directory, to the extent that you own
-the copyright and related rights in the work you are contributing, you
+By contributing any work to the `data/events/` directory, to the extent that you
+own the copyright and related rights in the work you are contributing, you
 voluntarily elect to apply CC0 (public domain dedication) to your work
-contributed to the `data/` directory and publicly distribute your work under the
-terms of CC0, with knowledge of your copyright and related rights in your work
-and the meaning and intended legal effect of CC0 on those rights. For more
-details, please read the [CC0 1.0 Universal Deed][cc0].
+contributed to the `data/events/` directory and publicly distribute your work
+under the terms of CC0, with knowledge of your copyright and related rights in
+your work and the meaning and intended legal effect of CC0 on those rights. For
+more details, please read the [CC0 1.0 Universal Deed][cc0].
 
 All work not contributed to the `data/` directory (e.g., source code for managing
 and working with the data) is governed by the terms of the GNU Affero General
