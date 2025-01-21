@@ -1,0 +1,298 @@
+{
+    "$id": "https://phpc.dev/schema/php-history/event.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "PHP History Event",
+    "type": "object",
+    "required": ["type", "summary", "date", "sources"],
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "event"
+        },
+        "summary": {
+            "type": "string",
+            "title": "Event Summary",
+            "description": "A name, title, or brief summary of the event.",
+            "maxLength": 100,
+            "minLength": 4,
+            "examples": [
+                "PHP-Kongress 2000",
+                "PHP 5.0.0 released"
+            ]
+        },
+        "date": {
+            "type": "string",
+            "title": "Event Date",
+            "description": "The date the event occurred or began.",
+            "format": "date",
+            "examples": [
+                "2000-10-08",
+                "2004-07-13"
+            ]
+        },
+        "time": {
+            "type": "string",
+            "title": "Event Time",
+            "description": "The time the event occurred or began, if applicable.",
+            "format": "time",
+            "examples": [
+                "09:02:42Z",
+                "17:36:03Z",
+                "10:00:00-04:00"
+            ]
+        },
+        "endDate": {
+            "type": "string",
+            "title": "Event End Date",
+            "description": "The date the event ended, if applicable.",
+            "format": "date",
+            "examples": [
+                "2000-10-09",
+                "2004-07-16"
+            ]
+        },
+        "endTime": {
+            "type": "string",
+            "title": "Event End Time",
+            "description": "The time the event ended, if applicable.",
+            "format": "time",
+            "examples": [
+                "09:47:02Z",
+                "18:06:54Z",
+                "12:00:00-04:00"
+            ]
+        },
+        "location": {
+            "type": "object",
+            "title": "Event Location",
+            "description": "The location where the event took place. Not all events will have a location. For example, software releases, publications, and RFCs usually do not have locations.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Location Name",
+                    "description": "The name of the location or venue (e.g., hotel, conference center, host company, etc.).",
+                    "examples": [
+                        "Ota-ku Sangyo Plaza",
+                        "Crowne Plaza Cologne City Centre",
+                        "Online (#phpc IRC channel)",
+                        "Online (Zoom)"
+                    ]
+                },
+                "city": {
+                    "type": "string",
+                    "title": "Location City",
+                    "description": "The city where the event took place, if applicable.",
+                    "examples": [
+                        "Tokyo",
+                        "Cologne",
+                        "Chicago",
+                        "Montreal"
+                    ]
+                },
+                "region": {
+                    "type": "string",
+                    "title": "Location Administrative Region/Division",
+                    "description": "The state, province, or other administrative division where the event took place, if applicable and necessary to identify the correct city in the country.",
+                    "examples": [
+                        "Illinois",
+                        "Quebec"
+                    ]
+                },
+                "country": {
+                    "type": "string",
+                    "title": "Location Country",
+                    "description": "The country where the event took place, if applicable.",
+                    "examples": [
+                        "Japan",
+                        "Germany",
+                        "United States",
+                        "Canada"
+                    ]
+                },
+                "coordinates": {
+                    "type": "object",
+                    "title": "Location Geographic Coordinates",
+                    "description": "If the location has specific geographic coordinates, feel free to provide them.",
+                    "required": ["latitude", "longitude"],
+                    "properties": {
+                        "latitude": {
+                            "type": "string",
+                            "pattern": "^-?[1-9]?\\d(?:\\.\\d{1,8})?$",
+                            "examples": [
+                                "35.558970",
+                                "50.936099"
+                            ]
+                        },
+                        "longitude": {
+                            "type": "string",
+                            "pattern": "^-?(?:1[0-8]|[1-9])?(?(?<=18)0|[0-9])(?:\\.\\d{1,8})?$",
+                            "examples": [
+                                "139.723536",
+                                "6.938516"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "details": {
+            "type": "string",
+            "title": "Event Details",
+            "description": "If relevant, provide more details about the event, what took place, and how it fits into PHP history. In providing details, try to stick only to facts that can be verified through the sources you've cited; stories and legends don't belong here. You may use multiple paragraphs and Markdown (CommonMark)."
+        },
+        "notes": {
+            "type": "string",
+            "title": "Additional Notes",
+            "description": "While you should stick to verifiable facts when describing the details of the event, you may use the notes property to expand and elaborate on the event. This can be a short statement—for example, saying you think the event is the first time something happened in the PHP community (but that you can't verify it based on the evidence)—or you can go into more detail on why you think the event is important. You may use multiple paragraphs and Markdown (CommonMark)."
+        },
+        "tags": {
+            "type": "array",
+            "title": "Tags Describing the Event",
+            "description": "As the amount of history data increases, tags can help us better organize and make sense of the data. You may use as many tags as you like, but try to keep them simple and generic. If you do use a specific tag for an event (e.g., \"phptek\"), that can be helpful to find all events related to the php[tek] conference. However, it would be helpful to also include the tag \"conference,\" in this example. Some past events that have occurred at a PHP Tek conference include things like meetings of user group organizers, so you might tag these events with \"phptek\" and \"user-group,\" for example.\n\nIf you include the year or version number of an event in a tag name, please include a second tag without the year or version number.",
+            "items": {
+                "type": "string",
+                "title": "Tag",
+                "pattern": "^[a-zA-Z0-9][\\w-]{2,39}$"
+            }
+        },
+        "sources": {
+            "type": "array",
+            "title": "Sources",
+            "description": "Please include one or more sources to verify the event summary and details. Hint: you may need to dig around Archive.org or deep within the histories of mailing lists.\n\nIf a source, such as a book or magazine/journal article, is not available online, you may cite it, as long as you provide enough information that would allow someone to reasonably find it in a library or archives somewhere.",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "title": "Source",
+                "required": ["title", "container"],
+                "properties": {
+                    "authors": {
+                        "type": "array",
+                        "title": "Authors",
+                        "items": {
+                            "type": "string",
+                            "title": "Author",
+                            "description": "Provide the author's name as best you can. There are many different formats for names, and sometimes the name is a corporation or a single name. Use your best judgement on how to format the name. Do not include titles, such as \"Dr.\" or \"Mr.,\" unless they are part of the author's name. For example, \"Dr. Seuss\" is a pen name, and the title should be included.",
+                            "examples": [
+                                "Rasmus Lerdorf",
+                                "KOYAMA Tetsuji",
+                                "Eric A. Mann",
+                                "J.R.R. Tolkien",
+                                "Zend Technologies, Inc.",
+                                "The PHP Foundation",
+                                "Madonna"
+                            ]
+                        }
+                    },
+                    "title": {
+                        "type": "string",
+                        "title": "Source Title",
+                        "description": "The full title of the source being cited. This might be the title of a blog post, web page, newspaper article, magazine article, book chapter, book, mailing list subject line, etc."
+                    },
+                    "container": {
+                        "type": "array",
+                        "description": "A source may be in one or more containers, or it may be self-contained. For example, a book is self contained, but a recording of a conference presentation watched on YouTube might have two containers: the first container is the conference where the presentation took place, and the second container is YouTube.\n\nThe inspiration for this style of citing sources comes from the Modern Language Association (MLA) style guide. The MLA provides a concise and straightforward approach to gathering and organizing source information, in much the same way a programming might think about a data model for sources, so we use it here to capture this information. To find out more about source containers, see <https://style.mla.org/works-cited/works-cited-a-quick-guide/>.",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "title": "Source Container",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "title": "Container Title",
+                                    "description": "Many sources are contained within a larger work, and it's useful to know the name of that larger work (i.e., the container). If that's the case with your source, include the name of the container here.\n\nFor example, if the source is a\n- web page, use the name of the website.\n- blog post, use the name of the blog.\n- mailing list post, use the name of the mailing list.\n- magazine article, use the name of the magazine.\n- newspaper article, use the name of the newspaper.\n- journal article, use the name of the journal.\n- conference presentation, use the name of the conference.\n- chapter of a book, use the name of the book.\n- book, omit this; there's no container.",
+                                    "examples": [
+                                        "97 Things Every Programmer Should Know: Collective Wisdom from the Experts",
+                                        "PHPDeveloper.org",
+                                        "Laracasts",
+                                        "PHP-Kongress",
+                                        "Zend PHP Conference and Expo",
+                                        "php[tek]",
+                                        "JetBrains Blog",
+                                        "comp.infosystems.www.authoring.cgi",
+                                        "php.internals",
+                                        "MARC"
+                                    ]
+                                },
+                                "contributor": {
+                                    "type": "string",
+                                    "title": "Contributor",
+                                    "description": "If the source container includes a contributor, such as an editor or translator, include that information here.",
+                                    "examples": [
+                                        "edited by Kevlin Henney",
+                                        "translated by Rui Hirokawa and Jun Kuwamura"
+                                    ]
+                                },
+                                "version": {
+                                    "type": "string",
+                                    "title": "Version",
+                                    "description": "The version refers to the edition of a work, this might be a subsequent edition of a book, a special edition of a movie, or a software version number.",
+                                    "examples": [
+                                        "version 8.4.2",
+                                        "2nd edition",
+                                        "expanded edition",
+                                        "updated edition",
+                                        "director's cut",
+                                        "e-book edition",
+                                        "9th edition, e-book edition"
+                                    ]
+                                },
+                                "number": {
+                                    "type": "string",
+                                    "title": "Number",
+                                    "description": "The number refers to the source's location in a sequence (if it's part of a sequence). For example, it might be a volume, an issue, an episode, or a season.",
+                                    "examples": [
+                                        "volume 2",
+                                        "number 98",
+                                        "volume 132, number 3",
+                                        "season 4, episode 10"
+                                    ]
+                                },
+                                "publisher": {
+                                    "type": "string",
+                                    "title": "Publisher",
+                                    "description": "The publisher produces the source and makes it available. A publisher may be a book publisher, a studio or distributor of a film, a government agency, the organization that created a website's content, etc. If the publisher is the same as the authors or the title of the container, then there's no need to provide it here.",
+                                    "examples": [
+                                        "PHP Architect, LLC",
+                                        "O'Reilly"
+                                    ]
+                                },
+                                "date": {
+                                    "type": "string",
+                                    "title": "Publication Date",
+                                    "description": "The date the version of the source you're citing was published.",
+                                    "examples": [
+                                        "19 March 2020",
+                                        "2005",
+                                        "May 2015",
+                                        "Spring 2008",
+                                        "29 September 2016, 6:06 p.m.",
+                                        "1999-2003",
+                                        "Circa 2004",
+                                        "2001?"
+                                    ]
+                                },
+                                "location": {
+                                    "type": "string",
+                                    "title": "Location",
+                                    "description": "The location of the source material (i.e., page, web address, numbering system, or place viewed/heard).",
+                                    "examples": [
+                                        "page 8",
+                                        "pages 22-34",
+                                        "https://doi.org/10.1109/SECON.2000.845625",
+                                        "https://example.com/an-article-about-the-event",
+                                        "Sheraton Suites Chicago O'Hare, Rosemont, Illinois"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "notes": {
+                        "type": "string",
+                        "title": "Additional Source Notes",
+                        "description": "You may provide any additional notes about the source that you feel is important to understanding the source."
+                    }
+                }
+            }
+        }
+    }
+}
