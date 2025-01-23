@@ -1,7 +1,8 @@
-title: CGI by Example included a PHP/FI chapter
-date: 1996
+type: event
+summary: '*CGI by Example* is published with a chapter on PHP/FI'
+date: '1996'
 
-description: |
+details: |
   *CGI by Example* included a chapter titled "Using PHP/FI." It described PHP:
 
   > PHP/FI was developed by Rasmus Lerdorf, who needed to create a script that
@@ -14,7 +15,7 @@ description: |
   > These two scripts have since been combined into one complete package called
   > PHP/FI.
 
-notes: >
+notes: |
   It's possible this is the first published book to mention PHP.
 
 tags:
@@ -25,8 +26,7 @@ sources:
     authors:
       - Robert Niles
       - Jeffry Dwight
-    date: 1996
-    medium: book
-    publisher: Que
-    location: Indianapolis
-    pages: 337-357
+    container:
+      - publisher: Que
+        date: '1996'
+        location: pp. 337-357

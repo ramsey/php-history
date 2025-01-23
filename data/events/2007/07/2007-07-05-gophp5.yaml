@@ -1,8 +1,10 @@
-title: GoPHP 5 Project
+type: event
+
+summary: GoPHP 5 Project
 
 date: '2007-07'
 
-description: |
+details: |
   In 2007, PHP 5 had been out for three years but still had paltry usage compared to PHP 4.
   That was mainly due to a chicken-and-egg issue, where shared hosts (which was most of the market at the time)
   didn't want to update to PHP 5 until their customers required it, but major PHP projects
@@ -39,16 +41,16 @@ sources:
     title: GoPHP5 Go
     authors:
       - Larry Garfield
-    date: '2007-07-05'
-    medium: blog
-    container: GarfieldTech
-    url: https://www.garfieldtech.com/blog/go-php-5-go
+    container:
+      - title: GarfieldTech
+        date: '2007-07-05'
+        location: https://www.garfieldtech.com/blog/go-php-5-go
   - # Be sure each source is an object in a YAML array.
     title: GoPHP5.org (Archived)
     authors:
       - Larry Garfield
       - Robert Douglas
-    date: '2008-12-17'
-    medium: website
-    container: GoPHP5 website
-    url: https://web.archive.org/web/20081217022709/http://gophp5.org/
+    container:
+      - title: GoPHP5 website
+        date: '2008-12-17'
+        location: https://web.archive.org/web/20081217022709/http://gophp5.org/

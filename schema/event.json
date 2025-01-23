@@ -4,6 +4,7 @@
     "title": "PHP History Event",
     "type": "object",
     "required": ["type", "summary", "date", "sources"],
+    "additionalProperties": false,
     "properties": {
         "type": {
             "type": "string",
@@ -24,48 +25,63 @@
             "type": "string",
             "title": "Event Date",
             "description": "The date the event occurred or began.",
-            "format": "date",
+            "pattern": "^\\d{4}(?:-(?:1[0-2]|0\\d)(?:-(?:3[01]|[12]\\d|0\\d))?)?$",
             "examples": [
                 "2000-10-08",
-                "2004-07-13"
-            ]
+                "2008-09",
+                "2016"
+            ],
+            "$error": {
+                "pattern": "The value must be a date in the format YYYY, YYYY-MM, or YYYY-MM-DD"
+            }
         },
         "time": {
             "type": "string",
             "title": "Event Time",
             "description": "The time the event occurred or began, if applicable.",
-            "format": "time",
+            "pattern": "^(?:2[0-3]|[01]\\d)(?::[0-5]\\d){1,2}(?:Z|(?:-1[0-2]|-0\\d|\\+1[0-4]|\\+0\\d)(?::[0-5]\\d)?)$",
             "examples": [
                 "09:02:42Z",
-                "17:36:03Z",
-                "10:00:00-04:00"
-            ]
+                "10:00:00-04:00",
+                "08:30+02:00"
+            ],
+            "$error": {
+                "pattern": "The value must be a 24-hour time with timezone offset, e.g. 09:00Z, 16:00-05, 23:59:59+06:30"
+            }
         },
         "endDate": {
             "type": "string",
             "title": "Event End Date",
             "description": "The date the event ended, if applicable.",
-            "format": "date",
+            "pattern": "^\\d{4}(?:-(?:1[0-2]|0\\d)(?:-(?:3[01]|[12]\\d|0\\d))?)?$",
             "examples": [
                 "2000-10-09",
-                "2004-07-16"
-            ]
+                "2008-09",
+                "2016"
+            ],
+            "$error": {
+                "pattern": "The value must be a date in the format YYYY, YYYY-MM, or YYYY-MM-DD"
+            }
         },
         "endTime": {
             "type": "string",
             "title": "Event End Time",
             "description": "The time the event ended, if applicable.",
-            "format": "time",
+            "pattern": "^(?:2[0-3]|[01]\\d)(?::[0-5]\\d){1,2}(?:Z|(?:-1[0-2]|-0\\d|\\+1[0-4]|\\+0\\d)(?::[0-5]\\d)?)$",
             "examples": [
-                "09:47:02Z",
                 "18:06:54Z",
-                "12:00:00-04:00"
-            ]
+                "12:00:00-04:00",
+                "11:00Z"
+            ],
+            "$error": {
+                "pattern": "The value must be a 24-hour time with timezone offset, e.g. 09:00Z, 16:00-05, 23:59:59+06:30"
+            }
         },
         "location": {
             "type": "object",
             "title": "Event Location",
             "description": "The location where the event took place. Not all events will have a location. For example, software releases, publications, and RFCs usually do not have locations.",
+            "additionalProperties": false,
             "properties": {
                 "name": {
                     "type": "string",
@@ -114,6 +130,7 @@
                     "title": "Location Geographic Coordinates",
                     "description": "If the location has specific geographic coordinates, feel free to provide them.",
                     "required": ["latitude", "longitude"],
+                    "additionalProperties": false,
                     "properties": {
                         "latitude": {
                             "type": "string",
@@ -121,7 +138,10 @@
                             "examples": [
                                 "35.558970",
                                 "50.936099"
-                            ]
+                            ],
+                            "$error": {
+                                "pattern": "The value must be formatted as latitude, e.g. 35.558970"
+                            }
                         },
                         "longitude": {
                             "type": "string",
@@ -129,7 +149,10 @@
                             "examples": [
                                 "139.723536",
                                 "6.938516"
-                            ]
+                            ],
+                            "$error": {
+                                "pattern": "The value must be formatted as longitude, e.g. 139.723536"
+                            }
                         }
                     }
                 }
@@ -152,7 +175,10 @@
             "items": {
                 "type": "string",
                 "title": "Tag",
-                "pattern": "^[a-zA-Z0-9][\\w-]{2,39}$"
+                "pattern": "^[a-zA-Z0-9][\\w-]{2,39}$",
+                "$error": {
+                    "pattern": "Tags may contain only alphanumeric characters, dashes (-), and underscores (_)"
+                }
             }
         },
         "sources": {
@@ -164,6 +190,7 @@
                 "type": "object",
                 "title": "Source",
                 "required": ["title", "container"],
+                "additionalProperties": false,
                 "properties": {
                     "authors": {
                         "type": "array",
@@ -195,6 +222,7 @@
                         "items": {
                             "type": "object",
                             "title": "Source Container",
+                            "additionalProperties": false,
                             "properties": {
                                 "title": {
                                     "type": "string",

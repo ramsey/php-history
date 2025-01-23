@@ -1,7 +1,8 @@
-title: PHP Tools announcement
-date: 1995-06-08
+type: event
+summary: PHP Tools announcement
+date: '1995-06-08'
 
-description: >
+details: |
   Rasmus Lerdorf announced "a set of small tight cgi binaries written in C" that
   allowed users to do things like "log access to your pages," view logs, build
   access counters, ban "access to users based on their domain," "create and
@@ -16,7 +17,7 @@ sources:
   - title: 'Announce: Personal Home Page Tools (PHP Tools)'
     authors:
       - Rasmus Lerdorf
-    date: 1995-06-08
-    medium: mailing list
-    container: comp.infosystems.www.authoring.cgi
-    url: https://groups.google.com/g/comp.infosystems.www.authoring.cgi/c/PyJ25gZ6z7A/m/M9FkTUVDfcwJ?pli=1
+    container:
+      - title: comp.infosystems.www.authoring.cgi
+        date: '1995-06-08'
+        location: https://groups.google.com/g/comp.infosystems.www.authoring.cgi/c/PyJ25gZ6z7A/m/M9FkTUVDfcwJ?pli=1

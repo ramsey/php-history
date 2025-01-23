@@ -4,8 +4,9 @@ on: ['push', 'pull_request']
 
 jobs:
   test:
+    name: Run Pest
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -13,11 +14,31 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
+          php-version: latest
           coverage: xdebug
 
       - name: Install Dependencies (Composer)
         uses: ramsey/composer-install@v3
 
       - name: Run Tests
-        run: ./vendor/bin/pest --ci
+        run: ./vendor/bin/pest --colors=always
+
+  validate:
+    name: Validate Data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: latest
+          coverage: none
+
+      - name: Install Dependencies (Composer)
+        uses: ramsey/composer-install@v3
+
+      - name: Run Validation
+        run: ./phphist data:validate --ansi
