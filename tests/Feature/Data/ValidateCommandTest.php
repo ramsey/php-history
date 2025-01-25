@@ -81,7 +81,7 @@ describe('event validation', function () {
     });
 
     it('fails for an event with multiple errors', function () {
-        $buffer = new BufferedOutput();
+        $buffer = new BufferedOutput;
         $result = Artisan::call(
             'data:validate',
             ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-event-multiple-errors.yaml']],
