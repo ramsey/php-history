@@ -1,0 +1,46 @@
+type: event
+summary: This is a summary
+date: '2025-01-01'
+time: '18:30:00-06:00'
+endDate: '2025-01-02'
+endTime: '23:59:59Z'
+location:
+  name: A place somewhere
+  city: Any Town
+  region: Some Region
+  country: United States
+  coordinates:
+    latitude: '35.712187'
+    longitude: '-83.514085'
+details: |
+  Lorem ipsum odor amet, consectetuer adipiscing elit. Ultricies tortor hendrerit enim adipiscing class. Amet vestibulum
+  suscipit tempor porta potenti. Nunc consequat aptent habitant sagittis sodales. Sapien vitae parturient turpis auctor
+  himenaeos. Nostra nam praesent mi class litora praesent. Eleifend semper tempor volutpat purus pretium odio orci fusce
+  tempor. Pulvinar urna consectetur suspendisse neque adipiscing fermentum himenaeos aptent.
+notes: |
+  Tristique conubia tempus nostra ipsum, rutrum ad. Ad vitae et conubia at varius nulla tincidunt eros? Risus augue et
+  curabitur; sodales morbi nam natoque proin faucibus. Egestas lectus vulputate quam turpis id. Platea egestas sociosqu
+  iaculis mauris posuere, velit nullam cursus. Quam mollis ad consectetur arcu curabitur. Natoque vulputate a cursus
+  urna ac nisi. Faucibus facilisis diam auctor conubia sagittis non blandit lacinia. Ad enim habitasse lacinia sociosqu
+  habitasse sit.
+tags:
+  - tag-one
+  - tag_two
+  - tagThree123_
+sources:
+  - authors:
+      - Sara J. Sample
+      - Author Sea Clerk
+    title: Source title
+    container:
+      - title: Container title
+        contributor: edited by Some Person
+        version: 2nd edition
+        number: volume 2
+        publisher: Big Publishing House
+        date: Spring 1998
+        location: 'https://example.com/'
+    notes: |
+      Tristique conubia tempus nostra ipsum, rutrum ad. Ad vitae et conubia at varius nulla tincidunt eros? Risus augue
+      et curabitur; sodales morbi nam natoque proin faucibus. Egestas lectus vulputate quam turpis id. Platea egestas
+      sociosqu.

@@ -19,9 +19,19 @@ class ValidateCommand extends Command
 {
     private const string DATA_DIR = __DIR__.'/../../../data';
 
-    private const string EVENT_SCHEMA_ID = 'https://phpc.dev/schema/php-history/event.json';
+    private const string DEFAULT_TYPE = 'event';
 
     private const string EVENT_SCHEMA_FILE = __DIR__.'/../../../schema/event.json';
+
+    private const string EVENT_SCHEMA_ID = 'https://phpc.dev/schema/php-history/event.json';
+
+    private const array TYPE_SCHEMA_MAP = [
+        'event' => self::EVENT_SCHEMA_ID,
+    ];
+
+    private const array VALID_TYPES = [
+        'event',
+    ];
 
     /**
      * @var string
@@ -105,12 +115,12 @@ class ValidateCommand extends Command
             return ! $this->renderNotYaml($relativePath);
         }
 
-        $data = Yaml::parseFile($file);
-        // Deeply convert the data to a stdClass object.
-        $data = json_decode(json_encode($data));
-        $dataType = $data->type ?? 'event';
+        // Deeply convert the data to a stdClass object, as expected by the validator.
+        $data = json_decode(json_encode(Yaml::parseFile($file)));
 
-        $result = $this->validator->validate($data, self::EVENT_SCHEMA_ID);
+        $type = in_array($data->type ?? null, self::VALID_TYPES) ? $data->type : self::DEFAULT_TYPE;
+
+        $result = $this->validator->validate($data, self::TYPE_SCHEMA_MAP[$type]);
 
         if ($result->isValid()) {
             return $this->renderValid($relativePath);

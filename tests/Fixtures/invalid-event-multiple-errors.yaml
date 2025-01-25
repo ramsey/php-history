@@ -1,0 +1,18 @@
+type: event
+summary: This is a summary with more than 100 characters. Lorem ipsum odor amet, consectetuer adipiscing elit.
+date: Not a valid date
+time: Not a valid time
+endDate: Not a valid end date
+endTime: Not a valid end time
+location:
+  unknownProperty: true
+  coordinates:
+    latitude: '05.712187'
+    longitude: '-83.514085000'
+tags:
+  - _tag1
+  - tag.2
+  - tag/3
+sources:
+  - title: Source title
+    container: []

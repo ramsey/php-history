@@ -1,0 +1,7 @@
+type: event
+summary: This is a summary
+date: '2025'
+sources:
+  - title: Source title
+    container:
+      - location: 'https://example.com/'
