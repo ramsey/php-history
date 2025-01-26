@@ -64,6 +64,9 @@ return [
         LaravelZero\Framework\Commands\StubPublishCommand::class,
         LaravelZero\Framework\Commands\BuildCommand::class,
         LaravelZero\Framework\Commands\InstallCommand::class,
+        LaravelZero\Framework\Commands\MakeCommand::class,
+        LaravelZero\Framework\Commands\TestMakeCommand::class,
+        NunoMaduro\Collision\Adapters\Laravel\Commands\TestCommand::class,
     ],
 
     /*
