@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Commands;
 
+use App\Type;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 use Opis\JsonSchema\Errors\ErrorFormatter;
@@ -12,26 +13,11 @@ use Opis\JsonSchema\Validator;
 use SplDoublyLinkedList;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Yaml\Yaml;
+
 use function Termwind\render;
 
 class ValidateCommand extends Command
 {
-    private const string DATA_DIR = __DIR__.'/../../data';
-
-    private const string DEFAULT_TYPE = 'event';
-
-    private const string EVENT_SCHEMA_FILE = __DIR__.'/../../schema/event.json';
-
-    private const string EVENT_SCHEMA_ID = 'https://phpc.dev/schema/php-history/event.json';
-
-    private const array TYPE_SCHEMA_MAP = [
-        'event' => self::EVENT_SCHEMA_ID,
-    ];
-
-    private const array VALID_TYPES = [
-        'event',
-    ];
-
     /**
      * @var string
      */
@@ -41,7 +27,7 @@ class ValidateCommand extends Command
     /**
      * @var string
      */
-    protected $description = 'Validate data files';
+    protected $description = 'Validates data files';
 
     /**
      * @var string
@@ -61,7 +47,7 @@ class ValidateCommand extends Command
 
         $this->workingDirectory = getcwd();
 
-        $this->validator->resolver()->registerFile(self::EVENT_SCHEMA_ID, self::EVENT_SCHEMA_FILE);
+        $this->validator->resolver()->registerFile(Type::EVENT_SCHEMA_ID, Type::EVENT_SCHEMA_FILE);
         $this->validator->setMaxErrors(10);
     }
 
@@ -73,7 +59,7 @@ class ValidateCommand extends Command
         $files = $this->argument('file');
 
         if ($files === []) {
-            $files[] = self::DATA_DIR;
+            $files[] = Type::DATA_DIR;
         }
 
         foreach ($files as $file) {
@@ -117,9 +103,9 @@ class ValidateCommand extends Command
         // Deeply convert the data to a stdClass object, as expected by the validator.
         $data = json_decode(json_encode(Yaml::parseFile($file)));
 
-        $type = in_array($data->type ?? null, self::VALID_TYPES) ? $data->type : self::DEFAULT_TYPE;
+        $type = in_array($data->type ?? null, Type::ACCEPTED) ? $data->type : Type::DEFAULT;
 
-        $result = $this->validator->validate($data, self::TYPE_SCHEMA_MAP[$type]);
+        $result = $this->validator->validate($data, Type::TYPE_SCHEMA_MAP[$type]);
 
         if ($result->isValid()) {
             return $this->renderValid($relativePath);
