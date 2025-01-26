@@ -3,29 +3,29 @@
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Output\BufferedOutput;
 
-describe('data:validate', function () {
+describe('validate', function () {
     it('returns a success status', function () {
-        $this->artisan('data:validate', ['--no-ansi' => true])
+        $this->artisan('validate', ['--no-ansi' => true])
             ->expectsOutputToContain('Validating data files...')
             ->assertSuccessful();
     });
 
     it('warns about a file that does not exist', function () {
-        $this->artisan('data:validate', ['--no-ansi' => true, 'file' => ['file/does/not/exist.yaml']])
+        $this->artisan('validate', ['--no-ansi' => true, 'file' => ['file/does/not/exist.yaml']])
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m  not found  \e[0m file/does/not/exist.yaml")
             ->assertSuccessful();
     });
 
     it('warns about a non-YAML file', function () {
-        $this->artisan('data:validate', ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-not-yaml.txt']])
+        $this->artisan('validate', ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-not-yaml.txt']])
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m  not yaml   \e[0m tests/Fixtures/invalid-not-yaml.txt")
             ->assertSuccessful();
     });
 
     it('fails when YAML is not an object', function () {
-        $this->artisan('data:validate', ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-not-object.yml']])
+        $this->artisan('validate', ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-not-object.yml']])
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m ✖︎ invalid  \e[0m tests/Fixtures/invalid-not-object.yml")
             ->expectsOutputToContain("\e[3m/\e[0m: The data (string) must match the type: object")
@@ -34,7 +34,7 @@ describe('data:validate', function () {
 
     it('fails when missing required properties', function () {
         $this->artisan(
-            'data:validate', [
+            'validate', [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/invalid-missing-required.yaml'],
             ])
@@ -46,7 +46,7 @@ describe('data:validate', function () {
 
     it('fails for an invalid type', function () {
         $this->artisan(
-            'data:validate', [
+            'validate', [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/invalid-type.yaml'],
             ])
@@ -60,7 +60,7 @@ describe('data:validate', function () {
 describe('event validation', function () {
     it('succeeds for an event with minimum properties', function () {
         $this->artisan(
-            'data:validate', [
+            'validate', [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/valid-event-minimum.yaml'],
             ])
@@ -71,7 +71,7 @@ describe('event validation', function () {
 
     it('succeeds for an event with maximum properties', function () {
         $this->artisan(
-            'data:validate', [
+            'validate', [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/valid-event-maximum.yaml'],
             ])
@@ -83,7 +83,7 @@ describe('event validation', function () {
     it('fails for an event with multiple errors', function () {
         $buffer = new BufferedOutput;
         $result = Artisan::call(
-            'data:validate',
+            'validate',
             ['--no-ansi' => true, 'file' => ['tests/Fixtures/invalid-event-multiple-errors.yaml']],
             $buffer,
         );

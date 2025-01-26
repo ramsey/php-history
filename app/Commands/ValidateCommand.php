@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Commands\Data;
+namespace App\Commands;
 
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
@@ -12,16 +12,15 @@ use Opis\JsonSchema\Validator;
 use SplDoublyLinkedList;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Yaml\Yaml;
-
 use function Termwind\render;
 
 class ValidateCommand extends Command
 {
-    private const string DATA_DIR = __DIR__.'/../../../data';
+    private const string DATA_DIR = __DIR__.'/../../data';
 
     private const string DEFAULT_TYPE = 'event';
 
-    private const string EVENT_SCHEMA_FILE = __DIR__.'/../../../schema/event.json';
+    private const string EVENT_SCHEMA_FILE = __DIR__.'/../../schema/event.json';
 
     private const string EVENT_SCHEMA_ID = 'https://phpc.dev/schema/php-history/event.json';
 
@@ -36,7 +35,7 @@ class ValidateCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'data:validate
+    protected $signature = 'validate
                             {file?* : The data file(s) to validate (optional)}';
 
     /**
