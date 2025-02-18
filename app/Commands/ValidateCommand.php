@@ -100,12 +100,14 @@ class ValidateCommand extends Command
             return ! $this->renderNotYaml($relativePath);
         }
 
+        $data = Yaml::parseFile($file);
+        $type = array_key_exists($data->type ?? null, Type::TYPE_SCHEMA_ID_MAP) ? $data->type : Type::DEFAULT;
+
         // Deeply convert the data to a stdClass object, as expected by the validator.
-        $data = json_decode(json_encode(Yaml::parseFile($file)));
-
-        $type = in_array($data->type ?? null, Type::ACCEPTED) ? $data->type : Type::DEFAULT;
-
-        $result = $this->validator->validate($data, Type::TYPE_SCHEMA_MAP[$type]);
+        $result = $this->validator->validate(
+            json_decode(json_encode(Yaml::parseFile($file))),
+            Type::TYPE_SCHEMA_ID_MAP[$type],
+        );
 
         if ($result->isValid()) {
             return $this->renderValid($relativePath);

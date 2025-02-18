@@ -3,5 +3,5 @@ summary: This is a summary
 date: '2025'
 sources:
   - title: Source title
-    container:
+    containers:
       - location: 'https://example.com/'

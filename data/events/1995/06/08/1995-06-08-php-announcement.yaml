@@ -17,7 +17,7 @@ sources:
   - title: 'Announce: Personal Home Page Tools (PHP Tools)'
     authors:
       - Rasmus Lerdorf
-    container:
+    containers:
       - title: comp.infosystems.www.authoring.cgi
         date: '1995-06-08'
         location: https://groups.google.com/g/comp.infosystems.www.authoring.cgi/c/PyJ25gZ6z7A/m/M9FkTUVDfcwJ?pli=1

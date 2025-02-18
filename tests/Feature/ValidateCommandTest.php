@@ -34,10 +34,12 @@ describe('validate', function () {
 
     it('fails when missing required properties', function () {
         $this->artisan(
-            'validate', [
+            'validate',
+            [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/invalid-missing-required.yaml'],
-            ])
+            ],
+        )
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m ✖︎ invalid  \e[0m tests/Fixtures/invalid-missing-required.yaml")
             ->expectsOutputToContain("\e[3m/\e[0m: The required properties (type, summary, date, sources) are missing")
@@ -46,10 +48,12 @@ describe('validate', function () {
 
     it('fails for an invalid type', function () {
         $this->artisan(
-            'validate', [
+            'validate',
+            [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/invalid-type.yaml'],
-            ])
+            ],
+        )
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m ✖︎ invalid  \e[0m tests/Fixtures/invalid-type.yaml")
             ->expectsOutputToContain("\e[3m/type\e[0m: Unexpected type; expected \"event\"")
@@ -60,10 +64,12 @@ describe('validate', function () {
 describe('event validation', function () {
     it('succeeds for an event with minimum properties', function () {
         $this->artisan(
-            'validate', [
+            'validate',
+            [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/valid-event-minimum.yaml'],
-            ])
+            ],
+        )
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m  ✔︎ valid   \e[0m tests/Fixtures/valid-event-minimum.yaml")
             ->assertSuccessful();
@@ -71,10 +77,12 @@ describe('event validation', function () {
 
     it('succeeds for an event with maximum properties', function () {
         $this->artisan(
-            'validate', [
+            'validate',
+            [
                 '--no-ansi' => true,
                 'file' => ['tests/Fixtures/valid-event-maximum.yaml'],
-            ])
+            ],
+        )
             ->expectsOutputToContain('Validating data files...')
             ->expectsOutputToContain("\e[3m  ✔︎ valid   \e[0m tests/Fixtures/valid-event-maximum.yaml")
             ->assertSuccessful();
@@ -102,6 +110,6 @@ describe('event validation', function () {
             ->and($output)->toContain("\e[3m/tags/0\e[0m: Tags may contain only alphanumeric characters, dashes (-), and underscores (_)")
             ->and($output)->toContain("\e[3m/tags/1\e[0m: Tags may contain only alphanumeric characters, dashes (-), and underscores (_)")
             ->and($output)->toContain("\e[3m/tags/2\e[0m: Tags may contain only alphanumeric characters, dashes (-), and underscores (_)")
-            ->and($output)->toContain("\e[3m/sources/0/container\e[0m: Array should have at least 1 items, 0 found");
+            ->and($output)->toContain("\e[3m/sources/0/containers\e[0m: Array should have at least 1 items, 0 found");
     });
 });

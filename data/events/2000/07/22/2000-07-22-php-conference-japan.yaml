@@ -26,6 +26,6 @@ sources:
   - title: '『PHPカンファレンス2000』開催のご案内'
     authors:
       - Japan PHP User Group
-    container:
+    containers:
       - date: '2000'
         location: 'http://oldwww.php.gr.jp/seminar/20000723/index.html'

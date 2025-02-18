@@ -32,7 +32,7 @@ sources:
       - Sara J. Sample
       - Author Sea Clerk
     title: Source title
-    container:
+    containers:
       - title: Container title
         contributor: edited by Some Person
         version: 2nd edition

@@ -32,7 +32,7 @@ sources:
   - title: April LUGOR Meeting - Topic PHP
     authors:
       - Thomas A. Bond
-    container:
+    containers:
       - title: lugor-announce
         date: 'Tue, 02 Apr 1996 09:12:07 -0500'
         location: 'https://web.archive.org/web/19961109195847/http://www.lugor.org/lugor-announce/0044.html'
