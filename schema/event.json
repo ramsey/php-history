@@ -15,8 +15,7 @@
             "type": "string",
             "title": "Event Summary",
             "description": "A name, title, or brief summary of the event.",
-            "maxLength": 100,
-            "minLength": 3,
+            "minLength": 5,
             "examples": [
                 "PHP-Kongress 2000",
                 "PHP 5.0.0 released"
@@ -135,7 +134,7 @@
                     "properties": {
                         "latitude": {
                             "type": "string",
-                            "pattern": "^-?[1-9]?\\d(?:\\.\\d{1,8})?$",
+                            "pattern": "^-?[1-9]?(?(?<=9)0|[0-9])(?:\\.\\d{1,8})?$",
                             "examples": [
                                 "35.558970",
                                 "50.936099"
@@ -218,7 +217,7 @@
                     },
                     "containers": {
                         "type": "array",
-                        "description": "A source may be in one or more containers, or it may be self-contained. For example, a book is self contained, but a recording of a conference presentation watched on YouTube might have two containers: the first container is the conference where the presentation took place, and the second container is YouTube.\n\nThe inspiration for this style of citing sources comes from the Modern Language Association (MLA) style guide. The MLA provides a concise and straightforward approach to gathering and organizing source information, in much the same way a programming might think about a data model for sources, so we use it here to capture this information. To find out more about source containers, see <https://style.mla.org/works-cited/works-cited-a-quick-guide/>.",
+                        "description": "A source may be in one or more containers, or it may be self-contained. For example, a book is self contained, but a recording of a conference presentation watched on YouTube might have two containers: the first container is the conference where the presentation took place, and the second container is YouTube.\n\nThe inspiration for this style of citing sources comes from the Modern Language Association (MLA) style guide. The MLA provides a concise and straightforward approach to gathering and organizing source information, in much the same way a programmer might think about a data model for sources, so we use it here to capture this information. To find out more about source containers, see <https://style.mla.org/works-cited/works-cited-a-quick-guide>.",
                         "minItems": 1,
                         "items": {
                             "type": "object",

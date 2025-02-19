@@ -100,7 +100,6 @@ describe('event validation', function () {
         expect($result)->toBe(1)
             ->and($output)->toContain('Validating data files...')
             ->and($output)->toContain("\e[3m ✖︎ invalid  \e[0m tests/Fixtures/invalid-event-multiple-errors.yaml")
-            ->and($output)->toContain("\e[3m/summary\e[0m: Maximum string length is 100, found 101")
             ->and($output)->toContain("\e[3m/date\e[0m: The value must be a date in the format YYYY, YYYY-MM, or YYYY-MM-DD")
             ->and($output)->toContain("\e[3m/time\e[0m: The value must be a 24-hour time with timezone offset, e.g. 09:00Z, 16:00-05, 23:59:59+06:30")
             ->and($output)->toContain("\e[3m/endDate\e[0m: The value must be a date in the format YYYY, YYYY-MM, or YYYY-MM-DD")
