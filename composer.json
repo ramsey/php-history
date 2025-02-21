@@ -8,8 +8,11 @@
     ],
     "require": {
         "php": "~8.4.0",
+        "ext-dom": "*",
         "laravel-zero/framework": "^11.36",
         "laravel/prompts": "^0.3.3",
+        "league/commonmark": "^2.6",
+        "league/html-to-markdown": "^5.1",
         "opis/json-schema": "^2.4",
         "symfony/filesystem": "^7.2",
         "symfony/yaml": "^7.2"
