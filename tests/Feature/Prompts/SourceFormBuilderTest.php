@@ -184,4 +184,63 @@ describe('SourceFormBuilder', function () {
         ]);
     });
 
+    it('prints ordinal names properly for each author prompt', function () {
+        $title = fake()->sentence();
+
+        $authorPrompts = [];
+        $authors = [];
+
+        for ($i = 1; $i <= 23; $i++) {
+            $name = fake()->name();
+            $authors[] = $name;
+            $authorPrompts = [...$authorPrompts, ...str_split($name), Key::ENTER];
+        }
+
+        Prompt::fake([
+            ...str_split($title), Key::ENTER, // Title.
+            ...$authorPrompts,
+            Key::ENTER, // No more authors.
+            Key::ENTER, // Skip container title.
+            Key::ENTER, // Skip container date.
+            Key::ENTER, // Skip container location.
+            Key::ENTER, // Skip container contributor.
+            Key::ENTER, // Skip container version.
+            Key::ENTER, // Skip container number.
+            Key::ENTER, // Skip container publisher.
+            Key::ENTER, // Proceed without adding another container.
+        ]);
+
+        $responses = (new SourceFormBuilder)->submit();
+
+        expect($responses)->toBe([
+            'title' => $title,
+            'authors' => $authors,
+        ]);
+
+        Prompt::assertOutputContains("What is the 1st author's name?");
+        Prompt::assertOutputContains("What is the 2nd author's name?");
+        Prompt::assertOutputContains("What is the 3rd author's name?");
+        Prompt::assertOutputContains("What is the 4th author's name?");
+        Prompt::assertOutputContains("What is the 5th author's name?");
+        Prompt::assertOutputContains("What is the 6th author's name?");
+        Prompt::assertOutputContains("What is the 7th author's name?");
+        Prompt::assertOutputContains("What is the 8th author's name?");
+        Prompt::assertOutputContains("What is the 9th author's name?");
+        Prompt::assertOutputContains("What is the 10th author's name?");
+        Prompt::assertOutputContains("What is the 11th author's name?");
+        Prompt::assertOutputContains("What is the 12th author's name?");
+        Prompt::assertOutputContains("What is the 13th author's name?");
+        Prompt::assertOutputContains("What is the 14th author's name?");
+        Prompt::assertOutputContains("What is the 15th author's name?");
+        Prompt::assertOutputContains("What is the 16th author's name?");
+        Prompt::assertOutputContains("What is the 17th author's name?");
+        Prompt::assertOutputContains("What is the 18th author's name?");
+        Prompt::assertOutputContains("What is the 19th author's name?");
+        Prompt::assertOutputContains("What is the 20th author's name?");
+        Prompt::assertOutputContains("What is the 21st author's name?");
+        Prompt::assertOutputContains("What is the 22nd author's name?");
+        Prompt::assertOutputContains("What is the 23rd author's name?");
+        Prompt::assertOutputContains("What is the 24th author's name?");
+    });
+
 });

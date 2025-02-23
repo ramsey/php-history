@@ -36,8 +36,8 @@ describe('ListItemConverter', function () {
             1. Fringilla egestas sociosqu interdum sapien lectus porttitor curabitur nulla. Dis nam curabitur scelerisque; lectus varius ultricies.
             2. Porttitor laoreet ultrices facilisi imperdiet sed faucibus ante.
                1. Convallis taciti facilisis natoque conubia litora nullam mollis. Massa turpis ex magna dignissim justo mauris quam id vel.
-                  1. Convallis taciti facilisis natoque conubia litora nullam mollis. Massa turpis ex magna dignissim justo mauris quam id vel.
-                  2. Platea nam vehicula sed proin felis. Class tempus adipiscing vivamus lectus ex dolor neque aptent amet.
+                  42. Convallis taciti facilisis natoque conubia litora nullam mollis. Massa turpis ex magna dignissim justo mauris quam id vel.
+                  43. Platea nam vehicula sed proin felis. Class tempus adipiscing vivamus lectus ex dolor neque aptent amet.
                2. Platea nam vehicula sed proin felis. Class tempus adipiscing vivamus lectus ex dolor neque aptent amet.
                   1. Platea nam vehicula sed proin felis. Class tempus adipiscing vivamus lectus ex dolor neque aptent amet.
                   2. Platea nam vehicula sed proin felis. Class tempus adipiscing vivamus lectus ex dolor neque aptent amet.
@@ -80,10 +80,11 @@ describe('ListItemConverter', function () {
             2. Porttitor laoreet ultrices facilisi imperdiet sed faucibus ante.
                1. Convallis taciti facilisis natoque conubia litora nullam mollis.
                   Massa turpis ex magna dignissim justo mauris quam id vel.
-                  1. Convallis taciti facilisis natoque conubia litora nullam mollis.
-                     Massa turpis ex magna dignissim justo mauris quam id vel.
-                  2. Platea nam vehicula sed proin felis. Class tempus adipiscing
-                     vivamus lectus ex dolor neque aptent amet.
+                  42. Convallis taciti facilisis natoque conubia litora nullam
+               mollis.
+                      Massa turpis ex magna dignissim justo mauris quam id vel.
+                  43. Platea nam vehicula sed proin felis. Class tempus adipiscing
+                      vivamus lectus ex dolor neque aptent amet.
                2. Platea nam vehicula sed proin felis. Class tempus adipiscing
                vivamus
                   lectus ex dolor neque aptent amet.

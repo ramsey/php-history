@@ -1,12 +1,24 @@
 <?php
 
 use App\Prompts\EventFormBuilder;
+use App\Services\Markdown\Normalizer;
 use Laravel\Prompts\Key;
 use Laravel\Prompts\Prompt;
 
 covers(EventFormBuilder::class);
 
 describe('EventFormBuilder', function () {
+
+    /**
+     * Pass-through normalizer
+     */
+    $normalizer = new class implements Normalizer
+    {
+        public function convert(string $input): string
+        {
+            return $input;
+        }
+    };
 
     $fakeEvent = function (): array {
         $startDate = fake()->dateTimeThisCentury();
@@ -59,7 +71,7 @@ describe('EventFormBuilder', function () {
         ];
     };
 
-    it('requires summary and date values', function () {
+    it('requires summary and date values', function () use ($normalizer) {
         $eventSummary = fake()->sentence();
         $eventDate = fake()->dateTimeThisCentury()->format('Y');
         $sourceTitle = fake()->sentence();
@@ -93,7 +105,7 @@ describe('EventFormBuilder', function () {
             Key::ENTER, // Proceed without adding another source.
         ]);
 
-        $responses = (new EventFormBuilder)->submit();
+        $responses = new EventFormBuilder($normalizer)->submit();
 
         expect($responses)->toBe([
             'type' => 'event',
@@ -107,7 +119,7 @@ describe('EventFormBuilder', function () {
         ]);
     });
 
-    it('accepts valid values', function () use ($fakeEvent) {
+    it('accepts valid values', function () use ($fakeEvent, $normalizer) {
         $event = $fakeEvent();
 
         Prompt::fake([
@@ -143,7 +155,7 @@ describe('EventFormBuilder', function () {
             Key::ENTER, // Proceed without adding another source.
         ]);
 
-        $responses = (new EventFormBuilder)->submit();
+        $responses = new EventFormBuilder($normalizer)->submit();
 
         expect($responses)->toBe($event);
     });

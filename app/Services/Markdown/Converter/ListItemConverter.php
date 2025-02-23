@@ -95,13 +95,8 @@ class ListItemConverter implements ConfigurationAwareInterface, ConverterInterfa
 
         if ($listType === 'ul') {
             $listItemStyle = Coerce::toString($this->config->getOption('list_item_style', '-'));
-            $listItemStyleAlternate = Coerce::toString($this->config->getOption('list_item_style_alternate', ''));
             if (! isset($this->listItemStyle)) {
-                $this->listItemStyle = $listItemStyleAlternate ?: $listItemStyle;
-            }
-
-            if ($listItemStyleAlternate && $level === 0 && $element->getSiblingPosition() === 1) {
-                $this->listItemStyle = $this->listItemStyle === $listItemStyle ? $listItemStyleAlternate : $listItemStyle;
+                $this->listItemStyle = $listItemStyle;
             }
 
             return $prefix.$this->listItemStyle.' '.$value."\n";

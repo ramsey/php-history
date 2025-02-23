@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Prompts;
 
+use App\Services\Markdown\Normalizer;
 use Laravel\Prompts\FormBuilder;
 
 use function Laravel\Prompts\confirm;
@@ -25,7 +26,7 @@ final class EventFormBuilder extends FormBuilder
     private const string TIME_PATTERN =
         '/^(?:2[0-3]|[01]\d)(?::[0-5]\d){1,2}(?:Z|(?:-1[0-2]|-0\d|\+1[0-4]|\+0\d)(?::[0-5]\d)?)$/';
 
-    public function __construct()
+    public function __construct(private readonly Normalizer $normalizer)
     {
         $this->addSummary();
         $this->addDate();
@@ -132,7 +133,7 @@ final class EventFormBuilder extends FormBuilder
             placeholder: "Stick only to facts that can be verified through your\nsources.",
             hint: 'You may use Markdown for formatting.',
             name: 'details',
-            transform: trim(...),
+            transform: $this->normalize(...),
         );
     }
 
@@ -146,7 +147,7 @@ final class EventFormBuilder extends FormBuilder
                 EOD,
             hint: 'You may use Markdown for formatting.',
             name: 'notes',
-            transform: trim(...),
+            transform: $this->normalize(...),
         );
     }
 
@@ -253,5 +254,10 @@ final class EventFormBuilder extends FormBuilder
         } while (confirm(label: 'Do you want to add another source?', default: false));
 
         return array_values(array_filter($sources));
+    }
+
+    private function normalize(string $input): string
+    {
+        return $this->normalizer->convert(trim($input));
     }
 }

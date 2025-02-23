@@ -55,7 +55,19 @@ class WordWrapConverter implements ConfigurationAwareInterface, ConverterInterfa
         // element using the converter provided.
         $reflectedNode = new ReflectionProperty($element, 'node');
         $node = $reflectedNode->getValue($element);
-        $node->nodeValue = wordwrap(trim($element->getValue()), $maxLineLength);
+        $node->nodeValue = implode(
+            "\n",
+            array_map(
+                rtrim(...),
+                explode(
+                    "\n",
+                    wordwrap(
+                        trim($element->getValue()),
+                        $maxLineLength,
+                    ),
+                ),
+            ),
+        );
 
         return $this->converter->convert($element);
     }
